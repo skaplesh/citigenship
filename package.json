@@ -17,6 +17,7 @@
     "@turf/union": "^6.5.0",
     "d3": "^7.6.1",
     "date-fns": "^2.29.1",
+    "echarts": "^5.4.3",
     "jquery": "^3.6.0",
     "leaflet": "^1.9.2",
     "leaflet-area-select": "^1.0.5",
