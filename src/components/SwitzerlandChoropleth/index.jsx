@@ -22,7 +22,7 @@ use([
   CanvasRenderer, // If you only need to use the canvas rendering mode, the bundle will not include the SVGRenderer module, which is not needed.
 ]);
 
-function mapCantonsToKenNames(data) {
+export function mapCantonsToKenNames(data) {
   const dictionary = data
     .map((ele) => ({
       name: `${ele.cantons}`,
@@ -100,19 +100,7 @@ function SwitzerlandChoropleth({ title, theme, data }) {
           min: 0,
           max: 5,
           inRange: {
-            color: [
-              "#313695",
-              "#4575b4",
-              "#74add1",
-              "#abd9e9",
-              "#e0f3f8",
-              "#ffffbf",
-              "#fee090",
-              "#fdae61",
-              "#f46d43",
-              "#d73027",
-              "#a50026",
-            ],
+            color: ["#ccff66", "#ffff00", "#ff9900", "#ff0000", "#800000"],
           },
           text: ["High", "Low"],
           calculable: true,
