@@ -18,9 +18,11 @@ const SwitzerlandMap = () => {
   return (
     <div className="App" style={{ overflow: "hidden" }}>
       <Sidebar />
-      <div id="Map" style={{ height: "100vh" }}>
+      <div id="Map">
         <SwitzerlandChoropleth data={filteredData} />
-        <SeverityBarChart data={data} />
+        <div style={{height:"40vh"}}>
+          <SeverityBarChart data={data} />
+        </div>
       </div>
     </div>
   );

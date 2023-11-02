@@ -52,11 +52,6 @@ function SwitzerlandChoropleth({ data }) {
   const handleMouseOver = useCallback((event) => {
     const layer = event.target;
     const { severity, kan_name } = layer.feature.properties;
-    layer.setStyle({
-      weight: 1,
-      color: "black",
-      fillOpacity: 1,
-    });
     setTooltipData({
       name: severity?.name ?? kan_name,
       value: severity?.value ?? NaN,
@@ -64,12 +59,10 @@ function SwitzerlandChoropleth({ data }) {
   }, []);
 
   const handleMouseOut = useCallback(
-    (event) => {
-      const updatedStyle = onEachFeatureStyle(event.target.feature);
-      event.target.setStyle(updatedStyle);
+    (_event) => {
       setTooltipData(undefined);
     },
-    [onEachFeatureStyle]
+    []
   );
 
   const onEachFeature = useCallback(

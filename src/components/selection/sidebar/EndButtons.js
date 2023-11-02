@@ -1,15 +1,16 @@
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {useState} from "react";
-import {resetPlayer} from "../../shared/features/PlayerSlice";
-import {changeMapFilters, checkChanges, reset, revert, save, saveAllChanges} from "../../shared/features/SavingsSlice";
-import {saveEvent} from "../../shared/features/ComparisonSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { resetPlayer } from "../../shared/features/PlayerSlice";
+import { changeMapFilters, checkChanges, reset, revert, save, saveAllChanges } from "../../shared/features/SavingsSlice";
+import { saveEvent } from "../../shared/features/ComparisonSlice";
 import GoToDialog from "./GoToDialog";
-import {StyledButton} from "../../../static/style/muiStyling";
+import { StyledButton } from "../../../static/style/muiStyling";
 
 export default function EndButtons() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { pathname } = useLocation()
 
     const isSaved = useSelector(state => !state.savings.isSaved)
     const data = useSelector(state => state.map.allData)
@@ -65,19 +66,25 @@ export default function EndButtons() {
         }
     }
 
+    const handleNavigate=()=>{
+        const navigationPath = pathname === "/hiwe" ? "/selection" : "/hiwe"
+        navigate(navigationPath)
+    }
+
     return (
         <div id="EndButtonContainer">
             <div id="SaveButtons">
                 <StyledButton onClick={handleSave}>Save</StyledButton>
                 <StyledButton onClick={handleReset}>Reset</StyledButton>
             </div>
-            <StyledButton sx={{width: "65%"}} onClick={handleRevert} disabled={isSaved}>Set last save</StyledButton>
-            <StyledButton sx={{marginBottom: "15px", width: "100%"}} onClick={handleGoTo}>Go to Comparison View</StyledButton>
+            <StyledButton sx={{ width: "65%" }} onClick={handleRevert} disabled={isSaved}>Set last save</StyledButton>
+            <StyledButton sx={{ marginBottom: "15px", width: "100%" }} onClick={handleGoTo}>Go to Comparison View</StyledButton>
             <GoToDialog
                 open={open}
                 value={dialogValue}
                 onClose={handleClose}
             />
+            <StyledButton sx={{ marginBottom: "15px", width: "100%" }} onClick={handleNavigate}>{pathname === "/hiwe" ? "Go to Selection" : "Go to HIWE"}</StyledButton>
         </div>
     )
 }
